@@ -2,10 +2,10 @@
   "name": "cathetio-api",
   "version": "1.0.0",
   "description": "cathet.io API is the backend for the cathet.io application. This repository contains all the code to manage data and logic through an API. This API serves to provide services to the frontend of the application and allows interaction with the database.",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "repository": {
     "type": "git",

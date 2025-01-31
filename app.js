@@ -1,19 +1,40 @@
 const express = require('express');
-const connectDB = require('./config/db');
-const taskRoutes = require('./routes/taskRoutes');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const morgan = require('morgan');
 const cors = require('cors');
-require('dotenv').config();
+const taskRoute = require('./routes/taskRoutes');
 
+// DB Connection
+const connectDB = require('./config/db');
+
+// Load environment variables
+dotenv.config({ path: './env' });
+
+// Initialize Express app
 const app = express();
+
+// Connect to Database
+connectDB();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Database connection
-connectDB();
+// Logging in development mode
+if (process.env.MODE === 'development') {
+    app.use(morgan('dev'));
+}
 
-// Routes
-app.use('/api', taskRoutes);
+// API Routes
+app.get('/', (req, res) => {
+    res.send('API is running successfully');
+});
 
-module.exports = app;
+app.use('/tasks', taskRoute);
+
+// Set Port and Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`.yellow.bold);
+});
