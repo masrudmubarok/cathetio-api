@@ -25,7 +25,7 @@ cathet.io API is the backend for the cathet.io application. This repository cont
    cd cathet.io-api
 2. Install dependencies:
    ```npm install``` 
-4. Create a `.env` file based on `.env.example` and configure the database and port settings.
+4. Create a `.env` file based on `.env.local` and configure the database and port settings.
 5. Run the server:
    ```npm start``` 
 
@@ -33,16 +33,15 @@ cathet.io API is the backend for the cathet.io application. This repository cont
 
 - `POST /api/register` - Register a new user
 - `POST /api/login` - Log in as a user
-- `GET /api/tasks` - Get all tasks
-- `POST /api/tasks` - Add a new task
-- `PUT /api/tasks/:id` - Update a task
-- `DELETE /api/tasks/:id` - Delete a task
+- `GET /tasks` - Get all tasks
+- `POST /tasks` - Add a new task
+- `PUT /tasks/:id` - Update a task
+- `DELETE /tasks/:id` - Delete a task
 
 ## Directory
 
 - `src/` - Main directory for source code
+  - `config/` - Configuration files
   - `controllers/` - API route controllers
   - `models/` - Database models
   - `routes/` - API route definitions
-  - `middleware/` - Custom middleware
-  - `config/` - Configuration files
