@@ -6,7 +6,7 @@ const Task = require('../models/taskModel');
  * @route POST /tasks
  * @access Public
  */
-exports.createTask = asyncHandler(async (req, res) => {
+const createTask = asyncHandler(async (req, res) => {
     const { title, description, status } = req.body;
 
     if (!title || !description || !status) {
@@ -30,7 +30,7 @@ exports.createTask = asyncHandler(async (req, res) => {
  * @route GET /tasks
  * @access Public
  */
-exports.getTasks = asyncHandler(async (req, res) => {
+const getTasks = asyncHandler(async (req, res) => {
     const tasks = await Task.find();
     res.status(200).json({
         success: true,
@@ -44,7 +44,7 @@ exports.getTasks = asyncHandler(async (req, res) => {
  * @route PUT /tasks/:id
  * @access Public
  */
-exports.updateTask = asyncHandler(async (req,res) => {
+const updateTask = asyncHandler(async (req,res) => {
     const { id } = req.params;
     const { title, description, status } = req.body;
 
@@ -75,7 +75,7 @@ exports.updateTask = asyncHandler(async (req,res) => {
  * @route DELETE /tasks/:id
  * @access Public
  */
-exports.deleteTask = asyncHandler(async (req, res) => {
+const deleteTask = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     const task = await Task.findById(id);
@@ -94,3 +94,5 @@ exports.deleteTask = asyncHandler(async (req, res) => {
         message: 'Task deleted successfully',
     });
 });
+
+module.exports = { getTasks, createTask, updateTask, deleteTask };
